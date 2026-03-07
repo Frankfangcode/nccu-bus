@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>政大校園公車即時資訊</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* ═══════════════════════════════════════════
+       CLAY DESIGN SYSTEM — NCCU BUS APP
+    ═══════════════════════════════════════════ */
+    :root {
+      --r1:    #7C3AED;
+      --r2:    #1D4ED8;
+      --r3:    #0369A1;
+      --warn:  #D97706;
+      --danger:#DC2626;
+      --bg:    #EEF2FF;
+
+      --clay-radius: 18px;
+      --clay-border: 3px solid rgba(0,0,0,0.09);
+      --clay-shadow: 4px 6px 0px rgba(0,0,0,0.11),
+                     inset -2px -2px 8px rgba(255,255,255,0.55);
+      --clay-shadow-sm: 2px 3px 0px rgba(0,0,0,0.09),
+                        inset -1px -1px 6px rgba(255,255,255,0.4);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Baloo 2', -apple-system, 'Noto Sans TC', sans-serif;
+      background: var(--bg);
+      color: #1E1B4B;
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ─────────────────────────────── */
+    header {
+      background: linear-gradient(140deg, #1E0A4C 0%, #3B0D82 55%, #5B21B6 100%);
+      color: #fff;
+      padding: 24px 16px 36px;
+      text-align: center;
+      box-shadow: 0 6px 28px rgba(76,29,149,.55);
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      width: 220px; height: 220px;
+      background: rgba(167,139,250,.12);
+      border-radius: 50%;
+      top: -70px; left: -50px;
+      pointer-events: none;
+    }
+    header::after {
+      content: '';
+      position: absolute;
+      width: 180px; height: 180px;
+      background: rgba(196,181,253,.09);
+      border-radius: 50%;
+      bottom: -40px; right: -30px;
+      pointer-events: none;
+    }
+    .header-inner { position: relative; z-index: 1; }
+    .header-logo  { font-size: .85rem; letter-spacing: .12em; opacity: .7; margin-bottom: 4px; }
+    .header-title { font-size: 1.4rem; font-weight: 800; letter-spacing: .04em; }
+    .clock {
+      font-size: 3.2rem; font-weight: 900;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: .02em;
+      margin: 10px 0 4px;
+      text-shadow: 0 0 28px rgba(167,139,250,.75);
+    }
+    .date-str { font-size: .86rem; opacity: .8; font-weight: 500; }
+    .school-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 12px; padding: 5px 16px;
+      border-radius: 999px;
+      font-size: .8rem; font-weight: 700;
+    }
+    .pill-on  { background: rgba(52,211,153,.2); border: 2px solid rgba(52,211,153,.45); color: #A7F3D0; }
+    .pill-off { background: rgba(239,68,68,.2);  border: 2px solid rgba(239,68,68,.45);  color: #FCA5A5; }
+
+    /* ── LAYOUT ─────────────────────────────── */
+    main { max-width: 640px; margin: 0 auto; padding: 16px; }
+
+    /* ── CLAY CARD BASE ─────────────────────── */
+    .clay-card {
+      border-radius: var(--clay-radius);
+      border: var(--clay-border);
+      box-shadow: var(--clay-shadow);
+      background: #fff;
+    }
+
+    /* ── SECTION TITLE ──────────────────────── */
+    .sec-title {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 1rem; font-weight: 800;
+      color: #3730A3;
+      margin: 24px 0 12px;
+    }
+    .sec-title::after {
+      content: ''; flex: 1; height: 2px;
+      background: linear-gradient(to right, #C7D2FE, transparent);
+      border-radius: 999px;
+    }
+
+    /* ── TIP BOX ────────────────────────────── */
+    .tip-box {
+      border-radius: var(--clay-radius);
+      border: var(--clay-border);
+      box-shadow: var(--clay-shadow-sm);
+      padding: 14px 16px;
+      font-size: .85rem;
+      line-height: 1.65;
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+    .tip-box strong { font-weight: 800; }
+
+    /* ── NEXT BANNER ────────────────────────── */
+    .next-banner {
+      background: linear-gradient(135deg, #FEF3C7, #FDE68A);
+      border: 2px solid #FCD34D;
+      border-radius: 12px;
+      padding: 8px 14px;
+      font-size: .82rem; font-weight: 700;
+      color: #78350F;
+      text-align: center;
+      margin-bottom: 12px;
+      box-shadow: 3px 3px 0 rgba(0,0,0,0.07);
+    }
+
+    /* ── BUS CARD ───────────────────────────── */
+    .bus-card {
+      border-radius: var(--clay-radius);
+      border: var(--clay-border);
+      box-shadow: var(--clay-shadow);
+      background: #fff;
+      margin-bottom: 14px;
+      overflow: hidden;
+      transition: transform .2s cubic-bezier(.34,1.56,.64,1), box-shadow .2s;
+    }
+    .bus-card:hover { transform: translateY(-4px); }
+    .bus-card.next-up {
+      box-shadow: 0 0 0 3px var(--warn),
+                  4px 6px 0 rgba(0,0,0,.10),
+                  inset -2px -2px 8px rgba(255,255,255,.5);
+    }
+    /* Color accent bar at top of each bus card */
+    .bus-accent {
+      height: 5px;
+      border-radius: 0;
+    }
+    .card-top {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      padding: 14px 16px 10px;
+    }
+    .route-badge {
+      display: inline-flex; align-items: center;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: .78rem; font-weight: 800;
+      color: #fff;
+      border: 2px solid rgba(0,0,0,0.12);
+      box-shadow: 2px 3px 0 rgba(0,0,0,0.12);
+    }
+    .route-name { font-size: .78rem; color: #6B7280; margin-top: 4px; font-weight: 600; }
+    .dep-block  { text-align: right; }
+    .dep-time {
+      font-size: 2.1rem; font-weight: 900;
+      font-variant-numeric: tabular-nums; line-height: 1;
+    }
+    .countdown {
+      font-size: .78rem; color: #6B7280;
+      margin-top: 3px;
+      font-variant-numeric: tabular-nums; font-weight: 600;
+    }
+    .cd-urgent { color: var(--danger); font-weight: 800; animation: pulse 1s infinite; }
+    .cd-soon   { color: var(--warn);   font-weight: 700; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.5} }
+
+    /* ── STOP TIMELINE ──────────────────────── */
+    .stops-wrap { padding: 0 16px 14px; }
+    .stop-row { display: flex; align-items: stretch; gap: 10px; }
+    .stop-spine {
+      display: flex; flex-direction: column; align-items: center;
+      width: 16px; flex-shrink: 0;
+    }
+    .stop-dot {
+      width: 13px; height: 13px;
+      border-radius: 50%;
+      border: 3px solid #D1D5DB;
+      background: #fff; flex-shrink: 0;
+    }
+    .dot-start { border-color: #9CA3AF; background: #9CA3AF; }
+    .dot-end   { border-color: currentColor; }
+    .spine-line { flex: 1; width: 2px; background: #E5E7EB; margin: 2px 0; min-height: 8px; }
+    .stop-info {
+      flex: 1; display: flex;
+      justify-content: space-between; align-items: center;
+      padding: 1px 0 8px;
+    }
+    .stop-name-txt { font-size: .83rem; font-weight: 500; }
+    .stop-name-txt.bold { font-weight: 800; }
+    .stop-eta-txt { font-size: .78rem; color: #6B7280; font-variant-numeric: tabular-nums; font-weight: 600; }
+
+    /* ── TABS ───────────────────────────────── */
+    .tab-bar {
+      display: flex; gap: 4px;
+      background: #fff;
+      border-radius: 14px; padding: 4px;
+      margin-bottom: 12px;
+      border: var(--clay-border);
+      box-shadow: var(--clay-shadow-sm);
+    }
+    .tab-btn {
+      flex: 1; padding: 9px 4px;
+      border: 3px solid transparent;
+      background: none; border-radius: 10px;
+      cursor: pointer;
+      font-family: 'Baloo 2', sans-serif;
+      font-size: .88rem; font-weight: 700;
+      color: #6B7280;
+      transition: all .2s cubic-bezier(.34,1.56,.64,1);
+    }
+    .tab-btn:hover:not(.active) { background: #EEF2FF; color: #4F46E5; }
+    .tab-btn.active {
+      background: #4C1D95; color: #fff; font-weight: 800;
+      border-color: rgba(0,0,0,0.1);
+      box-shadow: 2px 3px 0 rgba(0,0,0,0.12);
+    }
+    .tab-btn:focus-visible { outline: 3px solid #6366F1; outline-offset: 2px; }
+
+    /* ── INFO BOX ───────────────────────────── */
+    .info-box {
+      background: #FFF7ED;
+      border: 2px solid #FED7AA;
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-size: .82rem; color: #92400E;
+      margin-bottom: 12px;
+      line-height: 1.6; font-weight: 500;
+      box-shadow: 2px 3px 0 rgba(0,0,0,0.05);
+    }
+
+    /* ── SCHEDULE ACCORDION ─────────────────── */
+    .sched-card {
+      border-radius: var(--clay-radius);
+      border: var(--clay-border);
+      box-shadow: var(--clay-shadow);
+      background: #fff;
+      margin-bottom: 12px; overflow: hidden;
+    }
+    .sched-head {
+      display: flex; align-items: center; gap: 12px;
+      padding: 14px 16px;
+      cursor: pointer; user-select: none;
+      transition: background .15s;
+    }
+    .sched-head:hover { background: #F5F3FF; }
+    .sched-meta { flex: 1; }
+    .sched-dest  { font-size: .9rem; font-weight: 800; color: #1E1B4B; }
+    .sched-hours { font-size: .73rem; color: #9CA3AF; margin-top: 2px; font-weight: 600; }
+    .sched-toggle {
+      font-size: .85rem; color: #9CA3AF;
+      transition: transform .25s cubic-bezier(.34,1.56,.64,1);
+      width: 28px; height: 28px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 8px; background: #F3F4F6;
+    }
+    .sched-toggle.open { transform: rotate(180deg); }
+    .sched-body { padding: 0 16px 16px; display: none; }
+    .sched-body.open { display: block; }
+    .sched-note {
+      font-size: .78rem; color: #6B7280;
+      margin-bottom: 10px; padding: 8px 12px;
+      background: #F9FAFB;
+      border-radius: 10px; border: 1px solid #F3F4F6;
+      line-height: 1.6;
+    }
+
+    /* ── TIME CHIPS ─────────────────────────── */
+    .time-grid { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+    .t-chip {
+      padding: 5px 10px; border-radius: 10px;
+      font-size: .78rem; font-variant-numeric: tabular-nums;
+      color: #4C1D95; background: #EDE9FE;
+      border: 2px solid rgba(0,0,0,0.05);
+      font-weight: 600;
+      box-shadow: 2px 2px 0 rgba(0,0,0,0.07);
+      transition: transform .15s;
+    }
+    .t-chip:hover { transform: translateY(-1px); }
+    .t-chip.past { background: #F3F4F6; color: #9CA3AF; box-shadow: none; border-color: transparent; }
+    .t-chip.nxt  {
+      background: #4C1D95; color: #fff; font-weight: 800;
+      box-shadow: 3px 3px 0 rgba(0,0,0,0.15);
+      transform: scale(1.08);
+    }
+    .t-chip.eve  { background: #DBEAFE; color: #1E40AF; border-color: #BFDBFE; }
+
+    .t-chip-yellow {
+      padding: 5px 10px; border-radius: 10px;
+      font-size: .78rem; font-variant-numeric: tabular-nums;
+      background: #FEF3C7; color: #92400E;
+      border: 2px solid #FCD34D;
+      font-weight: 600;
+      box-shadow: 2px 2px 0 rgba(0,0,0,0.07);
+      transition: transform .15s;
+    }
+    .t-chip-yellow:hover { transform: translateY(-1px); }
+    .t-chip-yellow.nxt  {
+      background: #B45309; color: #fff; font-weight: 800;
+      border-color: #92400E;
+      box-shadow: 3px 3px 0 rgba(0,0,0,0.15); transform: scale(1.08);
+    }
+    .t-chip-yellow.past { background: #F3F4F6; color: #9CA3AF; border-color: transparent; box-shadow: none; }
+
+    /* ── LEGEND ─────────────────────────────── */
+    .legend {
+      border-radius: var(--clay-radius);
+      border: var(--clay-border);
+      box-shadow: var(--clay-shadow);
+      background: #fff;
+      padding: 16px; margin-bottom: 12px;
+    }
+    .leg-row {
+      display: flex; align-items: flex-start; gap: 12px;
+      margin-bottom: 12px; padding-bottom: 12px;
+      border-bottom: 1px solid #F3F4F6;
+    }
+    .leg-row:last-child { margin: 0; padding: 0; border: none; }
+    .leg-badge {
+      padding: 4px 12px; border-radius: 999px;
+      font-size: .76rem; font-weight: 800; color: #fff;
+      white-space: nowrap;
+      border: 2px solid rgba(0,0,0,0.1);
+      box-shadow: 2px 3px 0 rgba(0,0,0,0.1);
+      flex-shrink: 0;
+    }
+    .leg-info { font-size: .82rem; color: #374151; line-height: 1.55; }
+    .leg-stops { font-size: .75rem; color: #6B7280; margin-top: 3px; }
+
+    /* ── NO SERVICE ─────────────────────────── */
+    .no-svc {
+      text-align: center; padding: 48px 20px;
+      background: #fff;
+      border-radius: var(--clay-radius);
+      border: var(--clay-border);
+      box-shadow: var(--clay-shadow);
+      color: #6B7280;
+    }
+    .no-svc .emoji { font-size: 3.5rem; }
+    .no-svc .ttl { font-size: 1.1rem; font-weight: 800; color: #1E1B4B; margin: 12px 0 6px; }
+    .no-svc .sub { font-size: .85rem; line-height: 1.55; }
+
+    /* ── FOOTER ─────────────────────────────── */
+    footer {
+      text-align: center; padding: 28px 16px;
+      color: #9CA3AF; font-size: .75rem; line-height: 1.9;
+      max-width: 640px; margin: 0 auto;
+    }
+
+    /* ── REDUCED MOTION ─────────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      .bus-card, .tab-btn, .t-chip, .t-chip-yellow { transition: none; }
+      .cd-urgent { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="header-logo">NCCU · 國立政治大學</div>
+    <div class="header-title">🚌 校園公車即時資訊</div>
+    <div class="clock" id="clock">--:--:--</div>
+    <div class="date-str" id="date-str">載入中...</div>
+    <div id="school-pill" class="school-pill"></div>
+  </div>
+</header>
+
+<main id="main"></main>
+
+<footer>
+  ⚠️ 所有班次與下山時間均依官方資料估算，實際以學校公告為準<br>
+  本服務僅適用週一至週五上課日 · 例假日及停課日不行駛
+</footer>
+
+<script>
+// ─────────────────────────────────────────────
+//  ROUTE CONFIGURATION
+// ─────────────────────────────────────────────
+const ROUTES = {
+  r1: {
+    id: 'r1', badge: '政大一路', color: '#7C3AED',
+    dest: '好漢坡', svcEnd: 17*60+55,
+    svcHours: '07:30 – 17:55',
+    note: '尖峰（整點前後30分）每5分一班；離峰每8分一班',
+    routeDesc: '行政大樓 → 百年樓 → 藝文中心 → 好漢坡',
+    stops: [
+      { name:'行政大樓', off:0 },
+      { name:'百年樓',   off:1 },
+      { name:'藝文中心', off:2 },
+      { name:'好漢坡',   off:3 },
+    ],
+    terminus: '好漢坡',
+    terminusArrOff: 3,
+    terminusDepOff: 4,
+    downAt: { '好漢坡': 4 },
+    returnStops: [
+      { name:'好漢坡',   off:0 },
+      { name:'藝文中心', off:1 },
+      { name:'百年樓',   off:2 },
+      { name:'行政大樓', off:3 },
+    ],
+  },
+  r2: {
+    id: 'r2', badge: '政大二路', color: '#1D4ED8',
+    dest: '六期運動場', svcEnd: 21*60+30,
+    svcHours: '07:30 – 21:30',
+    note: '返程（下山）不經山居學習中心、自強十舍',
+    routeDesc: '行政大樓 → 百年樓 → 藝文中心 → 好漢坡 → 自強一二三舍 → 山居學習中心 → 自強十舍 → 研創中心 → 六期運動場',
+    stops: [
+      { name:'行政大樓',     off:0  },
+      { name:'百年樓',       off:1  },
+      { name:'藝文中心',     off:2  },
+      { name:'好漢坡',       off:3  },
+      { name:'自強一二三舍', off:4  },
+      { name:'山居學習中心', off:5  },
+      { name:'自強十舍',     off:6  },
+      { name:'研創中心',     off:8  },
+      { name:'六期運動場',   off:10 },
+    ],
+    terminus: '六期運動場',
+    terminusArrOff: 10,
+    terminusDepOff: 12,
+    downAt: { '好漢坡': 19 },
+    returnStops: [
+      { name:'六期運動場', off:0 },
+      { name:'研創中心',   off:2 },
+      { name:'好漢坡',     off:7 },
+      { name:'藝文中心',   off:8 },
+      { name:'百年樓',     off:9 },
+      { name:'行政大樓',   off:10 },
+    ],
+  },
+  r3: {
+    id: 'r3', badge: '政大三路', color: '#0369A1',
+    dest: '山居學習中心', svcEnd: 23*60,
+    svcHours: '08:10 – 23:00',
+    note: '18:00後班次密集；返程不停自強十舍',
+    routeDesc: '行政大樓 → 百年樓 → 藝文中心 → 好漢坡 → 自強一二三舍 → 山居學習中心',
+    stops: [
+      { name:'行政大樓',     off:0 },
+      { name:'百年樓',       off:1 },
+      { name:'藝文中心',     off:2 },
+      { name:'好漢坡',       off:3 },
+      { name:'自強一二三舍', off:4 },
+      { name:'山居學習中心', off:5 },
+    ],
+    terminus: '山居學習中心',
+    terminusArrOff: 5,
+    terminusDepOff: 7,
+    downAt: { '山居學習中心': 7, '好漢坡': 9 },
+    returnStops: [
+      { name:'山居學習中心', off:0 },
+      { name:'好漢坡',       off:2 },
+      { name:'藝文中心',     off:3 },
+      { name:'百年樓',       off:4 },
+      { name:'行政大樓',     off:5 },
+    ],
+  },
+
+  rh2: {
+    id: 'rh2', badge: '假日公車★', color: '#B45309',
+    dest: '六期運動場', svcEnd: 18*60,
+    svcHours: '08:00 – 18:00（整點班次）',
+    note: '黃底班次：延伸至六期運動場；返程不經山居學習中心、自強十舍',
+    routeDesc: '行政大樓 → 百年樓 → 藝文中心 → 好漢坡 → 自強一二三舍 → 山居學習中心 → 自強十舍 → 研創中心 → 六期運動場',
+    stops: [
+      { name:'行政大樓',     off:0  },
+      { name:'百年樓',       off:1  },
+      { name:'藝文中心',     off:2  },
+      { name:'好漢坡',       off:3  },
+      { name:'自強一二三舍', off:4  },
+      { name:'山居學習中心', off:5  },
+      { name:'自強十舍',     off:6  },
+      { name:'研創中心',     off:8  },
+      { name:'六期運動場',   off:10 },
+    ],
+    terminus: '六期運動場',
+    terminusArrOff: 10,
+    terminusDepOff: 12,
+    downAt: { '好漢坡': 19 },
+    returnStops: [
+      { name:'六期運動場', off:0  },
+      { name:'研創中心',   off:2  },
+      { name:'好漢坡',     off:7  },
+      { name:'藝文中心',   off:8  },
+      { name:'百年樓',     off:9  },
+      { name:'行政大樓',   off:10 },
+    ],
+  },
+
+  rh3: {
+    id: 'rh3', badge: '假日公車', color: '#0E7490',
+    dest: '山居學習中心', svcEnd: 23*60,
+    svcHours: '08:20 – 23:00（非整點班次）',
+    note: '一般班次：行至山居學習中心返回；返程不停自強十舍',
+    routeDesc: '行政大樓 → 百年樓 → 藝文中心 → 好漢坡 → 自強一二三舍 → 山居學習中心',
+    stops: [
+      { name:'行政大樓',     off:0 },
+      { name:'百年樓',       off:1 },
+      { name:'藝文中心',     off:2 },
+      { name:'好漢坡',       off:3 },
+      { name:'自強一二三舍', off:4 },
+      { name:'山居學習中心', off:5 },
+    ],
+    terminus: '山居學習中心',
+    terminusArrOff: 5,
+    terminusDepOff: 7,
+    downAt: { '山居學習中心': 7, '好漢坡': 9 },
+    returnStops: [
+      { name:'山居學習中心', off:0 },
+      { name:'好漢坡',       off:2 },
+      { name:'藝文中心',     off:3 },
+      { name:'百年樓',       off:4 },
+      { name:'行政大樓',     off:5 },
+    ],
+  },
+};
+
+// ─────────────────────────────────────────────
+//  DEPARTURE TIME GENERATION
+// ─────────────────────────────────────────────
+function genR1() {
+  const peaks = [
+    [7*60+45, 8*60+15],  [8*60+45, 9*60+15],
+    [9*60+45,10*60+15],  [10*60+45,11*60+15],
+    [11*60+45,12*60+15], [12*60+45,13*60+15],
+    [13*60+45,14*60+15], [14*60+45,15*60+15],
+    [15*60+45,16*60+15], [16*60+45,17*60+15],
+  ];
+  const inPeak = t => peaks.some(([s,e]) => t>=s && t<e);
+  const out = [];
+  let t = 7*60+30;
+  while (t <= 17*60+55) { out.push(t); t += inPeak(t) ? 5 : 8; }
+  return out;
+}
+
+function genR2() {
+  return [
+    7*60+30, 7*60+50,
+    8*60+20, 8*60+40,
+    9*60+20, 9*60+50,
+    10*60+20,10*60+50,
+    11*60+20,11*60+50,
+    12*60+20,
+    13*60+20,13*60+50,
+    14*60+20,14*60+50,
+    15*60+20,15*60+50,
+    16*60+20,16*60+50,
+    17*60+20,17*60+50,
+    18*60+10,
+    19*60+10,
+    20*60+10,
+    21*60+30,
+  ];
+}
+
+function genR3() {
+  const fixed = [
+    8*60+10,
+    9*60+30,
+    10*60+10,10*60+30,
+    11*60+10,11*60+30,
+    12*60+10,
+    13*60+10,13*60+30,
+    14*60+10,14*60+30,
+    15*60+10,15*60+30,
+    16*60+30,
+    17*60+10,17*60+30,
+  ];
+  const eve8=[], eve10=[], eve15=[];
+  for (let t=18*60;  t<19*60;  t+=8 ) eve8.push(t);
+  for (let t=19*60;  t<20*60;  t+=10) eve10.push(t);
+  for (let t=20*60;  t<=23*60; t+=15) eve15.push(t);
+  return [...new Set([...fixed,...eve8,...eve10,...eve15])].sort((a,b)=>a-b);
+}
+
+function genHoliday() {
+  return [
+    8*60,     8*60+20,  8*60+40,
+    9*60,     9*60+20,  9*60+40,
+    10*60,    10*60+20, 10*60+40, 11*60, 11*60+20,
+    12*60,    12*60+20, 12*60+40,
+    13*60,    13*60+20, 13*60+40,
+    14*60,    14*60+20, 14*60+40,
+    15*60,    15*60+20, 15*60+40,
+    16*60,    16*60+20, 16*60+40, 17*60, 17*60+20,
+    18*60,    18*60+20, 18*60+40,
+    19*60,    19*60+20, 19*60+40,
+    20*60,    20*60+20, 20*60+40,
+    21*60,    21*60+20, 21*60+40,
+    22*60,    22*60+15, 22*60+30, 22*60+45, 23*60,
+  ];
+}
+function isHolidayYellow(t) { return t % 60 === 0 && t >= 8*60 && t <= 18*60; }
+const ALL_HOLIDAY = genHoliday();
+
+const DEPARTURES = {
+  r1:  genR1(),
+  r2:  genR2(),
+  r3:  genR3(),
+  rh2: ALL_HOLIDAY.filter(t =>  isHolidayYellow(t)),
+  rh3: ALL_HOLIDAY.filter(t => !isHolidayYellow(t)),
+};
+
+const R3_EVENING_START = 18*60;
+
+// ─────────────────────────────────────────────
+//  TIME UTILITIES
+// ─────────────────────────────────────────────
+function getTW() {
+  const now = new Date();
+  const utc = now.getTime() + now.getTimezoneOffset()*60000;
+  return new Date(utc + 8*3600000);
+}
+function toMin(tw) { return tw.getHours()*60 + tw.getMinutes(); }
+function fmt(m) {
+  return `${String(Math.floor(m/60)).padStart(2,'0')}:${String(m%60).padStart(2,'0')}`;
+}
+function isWeekday(tw) { const d=tw.getDay(); return d>=1&&d<=5; }
+function fmtDate(tw) {
+  const days=['日','一','二','三','四','五','六'];
+  return `${tw.getFullYear()}年${tw.getMonth()+1}月${tw.getDate()}日　星期${days[tw.getDay()]}`;
+}
+function cdClass(diff) {
+  if (diff<=2) return 'cd-urgent';
+  if (diff<=8) return 'cd-soon';
+  return '';
+}
+function cdText(diff) {
+  if (diff<=0) return '⚡ 即將發車';
+  return `${diff} 分鐘後發車`;
+}
+
+// ─────────────────────────────────────────────
+//  RENDER HELPERS — Clay UI version
+// ─────────────────────────────────────────────
+function renderStops(stops, depMin, routeColor) {
+  return stops.map((s, i) => {
+    const isFirst = i===0, isLast = i===stops.length-1;
+    const etaMin = depMin + s.off;
+    const dotCls = isFirst ? 'stop-dot dot-start'
+                 : isLast  ? 'stop-dot dot-end'
+                 : 'stop-dot';
+    const dotStyle = isLast ? `style="border-color:${routeColor};color:${routeColor}"` : '';
+    const lineHtml = isLast ? '' : '<div class="spine-line"></div>';
+    const bold = isLast ? ' bold' : '';
+    return `
+      <div class="stop-row">
+        <div class="stop-spine">
+          <div class="${dotCls}" ${dotStyle}></div>
+          ${lineHtml}
+        </div>
+        <div class="stop-info">
+          <span class="stop-name-txt${bold}">${s.name}</span>
+          <span class="stop-eta-txt">${fmt(etaMin)}</span>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function busCard(routeId, depMin, curMin, isNextBus) {
+  const r = ROUTES[routeId];
+  const diff = depMin - curMin;
+  const nextCls = isNextBus ? ' next-up' : '';
+  return `
+    <div class="bus-card${nextCls}">
+      <div class="bus-accent" style="background:${r.color};"></div>
+      <div class="card-top">
+        <div>
+          <span class="route-badge" style="background:${r.color};">${r.badge}</span>
+          <div class="route-name">往 ${r.dest}</div>
+        </div>
+        <div class="dep-block">
+          <div class="dep-time" style="color:${r.color};">${fmt(depMin)}</div>
+          <div class="countdown ${cdClass(diff)}">${cdText(diff)}</div>
+        </div>
+      </div>
+      <div class="stops-wrap">
+        ${renderStops(r.stops, depMin, r.color)}
+      </div>
+    </div>`;
+}
+
+function renderUpcoming(curMin, routeIds) {
+  routeIds = routeIds || ['r1','r2','r3'];
+  const all = [];
+  routeIds.forEach(id => {
+    const r = ROUTES[id];
+    DEPARTURES[id].filter(t => t>=curMin && t<=r.svcEnd)
+      .slice(0, 3)
+      .forEach(t => all.push({ id, t }));
+  });
+  all.sort((a,b)=>a.t-b.t);
+  const shown = all.slice(0, 6);
+
+  if (!shown.length) return `
+    <div class="no-svc">
+      <div class="emoji">🌙</div>
+      <div class="ttl">今日班次已結束</div>
+      <div class="sub">公車服務結束，明天上課日再見！</div>
+    </div>`;
+
+  const firstT = shown[0].t;
+  const diff0  = firstT - curMin;
+  const bannerHtml = `
+    <div class="next-banner">
+      🔔 下一班：${ROUTES[shown[0].id].badge} ${fmt(firstT)}
+      ${diff0<=0 ? '（即將發車！）' : `· 還有 ${diff0} 分鐘`}
+    </div>`;
+
+  return bannerHtml + shown.map((b, i) =>
+    busCard(b.id, b.t, curMin, i===0)
+  ).join('');
+}
+
+function renderDownhill(curMin, selectedStop, routeIds) {
+  routeIds = routeIds || ['r1','r2','r3'];
+  const buses = [];
+  routeIds.forEach(id => {
+    const r = ROUTES[id];
+    if (r.downAt[selectedStop] === undefined) return;
+    DEPARTURES[id].filter(depT => depT <= r.svcEnd).forEach(depT => {
+      const terminusDepT = depT + r.terminusDepOff;
+      const passT        = depT + r.downAt[selectedStop];
+      if (passT >= curMin) {
+        buses.push({ id, r, depT, terminusDepT, passT });
+      }
+    });
+  });
+  buses.sort((a,b) => a.passT - b.passT);
+  const shown = buses.slice(0, 5);
+
+  if (!shown.length) return `
+    <div style="text-align:center;padding:24px;color:#9CA3AF;font-size:.85rem;font-weight:600;">
+      目前無下山班次估算資料
+    </div>`;
+
+  return shown.map(b => {
+    const diff = b.passT - curMin;
+    const isSameTerminus = (b.r.terminus === selectedStop);
+
+    const stopsHtml = b.r.returnStops.map((s, i) => {
+      const isFirst = i === 0, isLast = i === b.r.returnStops.length - 1;
+      const isHere  = s.name === selectedStop;
+      const etaMin  = b.terminusDepT + s.off;
+      const dotCls  = isFirst ? 'stop-dot dot-start' : isLast ? 'stop-dot dot-end' : 'stop-dot';
+      const dotStyle = isLast ? `style="border-color:${b.r.color};color:${b.r.color}"` : '';
+      const lineHtml = isLast ? '' : '<div class="spine-line"></div>';
+      const hereTag  = isHere && !isSameTerminus
+        ? `<span style="font-size:.68rem;background:${b.r.color};color:#fff;
+                        border-radius:5px;padding:1px 6px;margin-left:5px;vertical-align:middle;
+                        font-weight:800;">你在這</span>`
+        : '';
+      const nameBold = (isHere || isLast) ? ' bold' : '';
+      return `
+        <div class="stop-row">
+          <div class="stop-spine">
+            <div class="${dotCls}" ${dotStyle}
+              ${isHere ? `style="border-color:${b.r.color};background:${b.r.color};
+                                 box-shadow:0 0 0 3px ${b.r.color}33"` : ''}>
+            </div>
+            ${lineHtml}
+          </div>
+          <div class="stop-info">
+            <span class="stop-name-txt${nameBold}">${s.name}${hereTag}</span>
+            <span class="stop-eta-txt" style="${isHere?`color:${b.r.color};font-weight:800`:''}">${fmt(etaMin)}</span>
+          </div>
+        </div>`;
+    }).join('');
+
+    const termBanner = `
+      <div style="display:flex;align-items:center;gap:8px;
+                  background:#F9FAFB;border-radius:10px;
+                  padding:8px 12px;margin-bottom:10px;font-size:.8rem;color:#374151;
+                  border:1px solid #F3F4F6;">
+        <span style="font-size:1.1rem;">🏁</span>
+        <span>從 <strong>${b.r.terminus}</strong>
+          <span style="color:${b.r.color};font-weight:800;margin-left:4px;">${fmt(b.terminusDepT)}</span>
+          出發返回
+        </span>
+      </div>`;
+
+    return `
+      <div class="bus-card">
+        <div class="bus-accent" style="background:${b.r.color};"></div>
+        <div class="card-top">
+          <div>
+            <span class="route-badge" style="background:${b.r.color};">${b.r.badge}</span>
+            <div class="route-name">⬇️ 返程下山 · 往行政大樓</div>
+          </div>
+          <div class="dep-block">
+            <div class="dep-time" style="color:${b.r.color};">${fmt(b.passT)}</div>
+            <div class="countdown ${cdClass(diff)}">
+              ${diff<=0 ? '⚡ 即將抵達' : `${diff} 分鐘後抵達`}
+            </div>
+          </div>
+        </div>
+        <div class="stops-wrap">
+          ${termBanner}${stopsHtml}
+        </div>
+        <div style="font-size:.7rem;color:#9CA3AF;padding:0 16px 10px;
+                    border-top:1px solid #F3F4F6;padding-top:8px;margin-top:2px;">
+          ⏱ 依 ${fmt(b.depT)} 行政大樓發車 → ${b.r.terminus} ${fmt(b.terminusDepT)} 出發返回（估算）
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function renderFullSchedule(curMin) {
+  return ['r1','r2','r3'].map(id => {
+    const r = ROUTES[id];
+    const times = DEPARTURES[id];
+    const chipsHtml = times.map(t => {
+      let cls = 't-chip';
+      if (t < curMin - 3)               cls += ' past';
+      else if (t>=curMin && t<=curMin+2) cls += ' nxt';
+      else if (id==='r3' && t>=R3_EVENING_START) cls += ' eve';
+      return `<span class="${cls}">${fmt(t)}</span>`;
+    }).join('');
+
+    return `
+      <div class="sched-card">
+        <div class="sched-head" onclick="togSched('${id}')">
+          <span class="route-badge" style="background:${r.color};">${r.badge}</span>
+          <div class="sched-meta">
+            <div class="sched-dest">往 ${r.dest}</div>
+            <div class="sched-hours">${r.svcHours}</div>
+          </div>
+          <span class="sched-toggle" id="tog-${id}">▼</span>
+        </div>
+        <div class="sched-body" id="body-${id}">
+          <div class="sched-note">${r.note}</div>
+          <div class="time-grid">${chipsHtml}</div>
+          ${id==='r3' ? '<div style="margin-top:8px;font-size:.72rem;color:#9CA3AF;">🟦 藍色 = 晚間密集班次</div>' : ''}
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function renderHolidaySchedule(curMin) {
+  const chipsHtml = ALL_HOLIDAY.map(t => {
+    const isYellow = isHolidayYellow(t);
+    let cls = isYellow ? 't-chip t-chip-yellow' : 't-chip';
+    if (t < curMin - 3)               cls += ' past';
+    else if (t>=curMin && t<=curMin+2) cls = (isYellow ? 't-chip-yellow' : 't-chip') + ' nxt';
+    const suffix = isYellow ? ' ★' : '';
+    return `<span class="${cls}" title="${isYellow?'黃底班次：往六期運動場':'往山居學習中心'}">${fmt(t)}${suffix}</span>`;
+  }).join('');
+
+  return `
+    <div class="sched-card">
+      <div class="sched-head" onclick="togSched('holiday')">
+        <span class="route-badge" style="background:#0E7490;">假日公車</span>
+        <div class="sched-meta">
+          <div class="sched-dest">行政大樓出發完整班次</div>
+          <div class="sched-hours">週六、日及國定假日 08:00 – 23:00</div>
+        </div>
+        <span class="sched-toggle" id="tog-holiday">▼</span>
+      </div>
+      <div class="sched-body" id="body-holiday">
+        <div class="sched-note">
+          🟨 <strong>黃底★</strong>：整點班次（08:00–18:00），延伸至六期運動場<br>
+          ⬜ 其餘班次：至山居學習中心後返回
+        </div>
+        <div class="time-grid">${chipsHtml}</div>
+      </div>
+    </div>`;
+}
+
+function renderHolidayLegend() {
+  return `
+    <div class="legend">
+      <div class="leg-row">
+        <span class="leg-badge" style="background:#B45309;">假日公車★</span>
+        <div class="leg-info">
+          <div>行政大樓 → 百年樓 → 藝文中心 → 好漢坡 → 自強一二三舍 → 山居學習中心 → 自強十舍 → 研創中心 → 六期運動場</div>
+          <div class="leg-stops">整點發車 08:00–18:00 ｜ 返程不經山居學習中心、自強十舍</div>
+        </div>
+      </div>
+      <div class="leg-row">
+        <span class="leg-badge" style="background:#0E7490;">假日公車</span>
+        <div class="leg-info">
+          <div>行政大樓 → 百年樓 → 藝文中心 → 好漢坡 → 自強一二三舍 → 山居學習中心</div>
+          <div class="leg-stops">非整點班次 08:20–23:00 ｜ 假日公車服務：週六、日及國定假日</div>
+        </div>
+      </div>
+    </div>`;
+}
+
+function renderLegend() {
+  return `
+    <div class="legend">
+      ${['r1','r2','r3'].map(id => {
+        const r = ROUTES[id];
+        return `
+          <div class="leg-row">
+            <span class="leg-badge" style="background:${r.color};">${r.badge}</span>
+            <div class="leg-info">
+              <div>${r.routeDesc}</div>
+              <div class="leg-stops">${r.svcHours} ｜ ${r.note}</div>
+            </div>
+          </div>`;
+      }).join('')}
+    </div>`;
+}
+
+// ─────────────────────────────────────────────
+//  STATE & MAIN RENDER
+// ─────────────────────────────────────────────
+let selDownStop = '好漢坡';
+let initRender  = true;
+
+function render() {
+  const tw     = getTW();
+  const curMin = toMin(tw);
+
+  // Clock
+  const hh = String(tw.getHours()).padStart(2,'0');
+  const mm = String(tw.getMinutes()).padStart(2,'0');
+  const ss = String(tw.getSeconds()).padStart(2,'0');
+  document.getElementById('clock').textContent = `${hh}:${mm}:${ss}`;
+  document.getElementById('date-str').textContent = fmtDate(tw);
+
+  // Header pill
+  const pill    = document.getElementById('school-pill');
+  const weekend = !isWeekday(tw);
+  if (!weekend) {
+    pill.className   = 'school-pill pill-on';
+    pill.textContent = '✓ 上課日　平日公車服務中';
+  } else {
+    pill.className   = 'school-pill pill-on';
+    pill.textContent = '🌟 假日公車服務中　08:00–23:00';
+  }
+
+  if (!initRender) return;
+  initRender = false;
+
+  const main = document.getElementById('main');
+  const HOLIDAY_ROUTES = ['rh2','rh3'];
+
+  if (weekend) {
+    main.innerHTML = `
+      <div class="tip-box" style="background:#FFFBEB;border-color:#FCD34D;color:#78350F;">
+        🌟 <strong>今日為假日班表（週六/日/國定假日）</strong><br>
+        &nbsp;&nbsp;&nbsp;★ 整點班次（08:00–18:00）延伸至六期運動場，其餘至山居學習中心。<br>
+        &nbsp;&nbsp;&nbsp;建議在發車時間<strong>前即抵達候車</strong>，以免錯過班次。<br>
+        &nbsp;&nbsp;&nbsp;行政大樓→山居約 <strong>5 分鐘</strong>，→六期約 <strong>10 分鐘</strong>。
+      </div>
+
+      <div class="sec-title">🚌 即將發車（從行政大樓出發）</div>
+      <div id="upcoming-wrap">${renderUpcoming(curMin, HOLIDAY_ROUTES)}</div>
+
+      <div class="sec-title">⬇️ 下山公車預估時間</div>
+      <div class="tab-bar">
+        <button class="tab-btn ${selDownStop==='好漢坡'?'active':''}"
+                onclick="selStop('好漢坡')">好漢坡</button>
+        <button class="tab-btn ${selDownStop==='山居學習中心'?'active':''}"
+                onclick="selStop('山居學習中心')">山居學習中心</button>
+      </div>
+      <div class="info-box">
+        ℹ️ 每班公車到達<strong>山上終點站後即返回行政大樓</strong>。<br>
+        下方顯示各班返程從終點出發時間，以及預計抵達你所在站的時間。<br>
+        時間為估算值，建議<strong>稍早到站候車</strong>。
+      </div>
+      <div id="downhill-wrap">${renderDownhill(curMin, selDownStop, HOLIDAY_ROUTES)}</div>
+
+      <div class="sec-title">📋 假日完整時刻表</div>
+      ${renderHolidaySchedule(curMin)}
+
+      <div class="sec-title">🗺️ 路線說明（假日）</div>
+      ${renderHolidayLegend()}
+    `;
+  } else {
+    main.innerHTML = `
+      <div class="tip-box" style="background:#ECFDF5;border-color:#6EE7B7;color:#065F46;">
+        💡 <strong>候車小提示：</strong>建議在發車時間<strong>前即抵達候車</strong>，以免錯過班次。<br>
+        &nbsp;&nbsp;&nbsp;一路：行政大樓→好漢坡約 <strong>3 分鐘</strong>。<br>
+        &nbsp;&nbsp;&nbsp;二、三路：行政大樓→山居學習中心約 <strong>5 分鐘</strong>。
+      </div>
+
+      <div class="sec-title">🚌 即將發車（從行政大樓出發）</div>
+      <div id="upcoming-wrap">${renderUpcoming(curMin)}</div>
+
+      <div class="sec-title">⬇️ 下山公車預估時間</div>
+      <div class="tab-bar">
+        <button class="tab-btn ${selDownStop==='好漢坡'?'active':''}"
+                onclick="selStop('好漢坡')">好漢坡</button>
+        <button class="tab-btn ${selDownStop==='山居學習中心'?'active':''}"
+                onclick="selStop('山居學習中心')">山居學習中心</button>
+      </div>
+      <div class="info-box">
+        ℹ️ 每班公車到達<strong>山上終點站後即返回行政大樓</strong>。<br>
+        下方顯示各班返程從終點出發時間，以及預計抵達你所在站的時間。<br>
+        時間為估算值，建議<strong>稍早到站候車</strong>。
+      </div>
+      <div id="downhill-wrap">${renderDownhill(curMin, selDownStop)}</div>
+
+      <div class="sec-title">📋 完整時刻表</div>
+      ${renderFullSchedule(curMin)}
+
+      <div class="sec-title">🗺️ 路線說明</div>
+      ${renderLegend()}
+    `;
+  }
+}
+
+function togSched(id) {
+  document.getElementById(`body-${id}`).classList.toggle('open');
+  document.getElementById(`tog-${id}`).classList.toggle('open');
+}
+
+function selStop(stop) {
+  selDownStop = stop;
+  const tw  = getTW();
+  const rIds = !isWeekday(tw) ? ['rh2','rh3'] : ['r1','r2','r3'];
+  document.getElementById('downhill-wrap').innerHTML =
+    renderDownhill(toMin(tw), stop, rIds);
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.textContent === stop);
+  });
+}
+
+// ─────────────────────────────────────────────
+//  BOOT
+// ─────────────────────────────────────────────
+render();
+
+setInterval(() => {
+  const tw = getTW();
+  const hh = String(tw.getHours()).padStart(2,'0');
+  const mm = String(tw.getMinutes()).padStart(2,'0');
+  const ss = String(tw.getSeconds()).padStart(2,'0');
+  document.getElementById('clock').textContent = `${hh}:${mm}:${ss}`;
+}, 1000);
+
+setInterval(() => { initRender = true; render(); }, 60000);
+</script>
+</body>
+</html>
