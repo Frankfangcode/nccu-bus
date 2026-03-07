@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>雅思作文完整攻略 IELTS Writing Guide</title>
+  <style>
+    :root {
+      --blue: #1a56db;
+      --lightblue: #e8f0fe;
+      --green: #057a55;
+      --lightgreen: #def7ec;
+      --orange: #d03801;
+      --lightorange: #fde8d8;
+      --purple: #6c2bd9;
+      --lightpurple: #f3f0ff;
+      --yellow: #c27803;
+      --lightyellow: #fdf3c0;
+      --gray: #374151;
+      --lightgray: #f9fafb;
+      --border: #e5e7eb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', 'PingFang TC', 'Noto Sans TC', sans-serif;
+      color: var(--gray);
+      background: #f3f4f6;
+      line-height: 1.7;
+    }
+
+    /* HEADER */
+    header {
+      background: linear-gradient(135deg, #1a56db 0%, #6c2bd9 100%);
+      color: white;
+      padding: 48px 24px 40px;
+      text-align: center;
+    }
+    header h1 { font-size: 2.4rem; font-weight: 800; letter-spacing: -0.5px; }
+    header p { margin-top: 10px; font-size: 1.05rem; opacity: 0.88; }
+    .badge-row { display: flex; justify-content: center; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
+    .badge {
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 99px;
+      padding: 5px 16px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    /* LAYOUT */
+    .container { max-width: 900px; margin: 0 auto; padding: 32px 16px 60px; }
+
+    /* SECTION */
+    section { margin-bottom: 36px; }
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--blue);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-title .icon {
+      width: 34px; height: 34px;
+      border-radius: 8px;
+      background: var(--lightblue);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    /* CARD */
+    .card {
+      background: white;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      padding: 24px;
+      margin-bottom: 16px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+    .card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
+
+    /* TASK CARDS */
+    .task-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media(max-width:600px){ .task-grid { grid-template-columns: 1fr; } }
+
+    .task-card {
+      border-radius: 14px;
+      padding: 22px;
+      border: 2px solid transparent;
+    }
+    .task1 { background: var(--lightblue); border-color: #a8c1f8; }
+    .task2 { background: var(--lightpurple); border-color: #c4b5fd; }
+    .task-label {
+      display: inline-block;
+      font-size: 0.7rem; font-weight: 800; text-transform: uppercase;
+      letter-spacing: 1px;
+      border-radius: 6px;
+      padding: 3px 10px;
+      margin-bottom: 10px;
+    }
+    .task1 .task-label { background: #1a56db; color: white; }
+    .task2 .task-label { background: #6c2bd9; color: white; }
+    .task-card h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 6px; }
+    .task-card ul { padding-left: 18px; }
+    .task-card ul li { margin-bottom: 4px; font-size: 0.95rem; }
+    .task-meta {
+      margin-top: 12px;
+      font-size: 0.85rem;
+      display: flex; gap: 12px; flex-wrap: wrap;
+    }
+    .meta-pill {
+      background: rgba(0,0,0,0.08);
+      border-radius: 99px;
+      padding: 3px 12px;
+      font-weight: 600;
+    }
+
+    /* EXAMPLE BOX */
+    .example-box {
+      background: var(--lightgray);
+      border-left: 4px solid var(--blue);
+      border-radius: 0 10px 10px 0;
+      padding: 18px 20px;
+      margin: 12px 0;
+      font-size: 0.95rem;
+    }
+    .example-box.green { border-color: var(--green); background: var(--lightgreen); }
+    .example-box.orange { border-color: var(--orange); background: var(--lightorange); }
+    .example-box.purple { border-color: var(--purple); background: var(--lightpurple); }
+    .example-label {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+      color: var(--blue);
+    }
+    .example-box.green .example-label { color: var(--green); }
+    .example-box.orange .example-label { color: var(--orange); }
+    .example-box.purple .example-label { color: var(--purple); }
+
+    /* STRUCTURE */
+    .structure-block {
+      background: white;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+    .structure-header {
+      padding: 14px 20px;
+      font-weight: 800;
+      font-size: 1rem;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .structure-header.blue { background: var(--lightblue); color: var(--blue); }
+    .structure-header.purple { background: var(--lightpurple); color: var(--purple); }
+    .structure-body { padding: 18px 20px; }
+    .para-row {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 14px;
+      align-items: flex-start;
+    }
+    .para-num {
+      min-width: 32px; height: 32px;
+      border-radius: 50%;
+      background: var(--blue);
+      color: white;
+      font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+    .para-row.purple .para-num { background: var(--purple); }
+    .para-content h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 3px; }
+    .para-content p { font-size: 0.9rem; color: #6b7280; }
+
+    /* TIPS */
+    .tip-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media(max-width:600px){ .tip-grid { grid-template-columns: 1fr; } }
+    .tip-card {
+      background: white;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      padding: 18px;
+    }
+    .tip-card .tip-icon {
+      font-size: 1.5rem; margin-bottom: 8px;
+    }
+    .tip-card h4 { font-weight: 700; margin-bottom: 6px; font-size: 0.95rem; }
+    .tip-card p { font-size: 0.88rem; color: #6b7280; }
+
+    /* VOCAB TABLE */
+    table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+    th {
+      background: var(--lightblue);
+      color: var(--blue);
+      font-weight: 700;
+      padding: 10px 14px;
+      text-align: left;
+    }
+    td { padding: 10px 14px; border-bottom: 1px solid var(--border); }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: var(--lightgray); }
+
+    /* SCORING */
+    .score-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    @media(max-width:600px){ .score-grid { grid-template-columns: 1fr 1fr; } }
+    .score-card {
+      background: white;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      padding: 16px;
+      text-align: center;
+    }
+    .score-card .score-name { font-size: 0.75rem; font-weight: 700; color: #6b7280; margin-bottom: 6px; }
+    .score-card .score-abbr { font-size: 1.5rem; font-weight: 800; color: var(--blue); }
+    .score-card p { font-size: 0.78rem; margin-top: 6px; color: #6b7280; }
+
+    /* URGENT BOX */
+    .urgent-box {
+      background: linear-gradient(135deg, #fde8d8, #fdf3c0);
+      border: 2px solid var(--orange);
+      border-radius: 14px;
+      padding: 22px;
+    }
+    .urgent-box h3 { color: var(--orange); font-size: 1.1rem; font-weight: 800; margin-bottom: 12px; }
+    .day-row { display: flex; gap: 12px; margin-bottom: 10px; align-items: flex-start; }
+    .day-label {
+      min-width: 70px;
+      background: var(--orange);
+      color: white;
+      font-weight: 800;
+      font-size: 0.8rem;
+      border-radius: 6px;
+      padding: 3px 10px;
+      text-align: center;
+    }
+    .day-content { font-size: 0.9rem; }
+
+    /* SAMPLE ESSAY */
+    .essay-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      font-size: 0.92rem;
+      line-height: 1.85;
+    }
+    .essay-box p { margin-bottom: 12px; }
+    .essay-box .highlight {
+      background: #fef9c3;
+      border-radius: 3px;
+      padding: 0 2px;
+    }
+    .word-count { font-size: 0.8rem; color: #9ca3af; margin-top: 8px; text-align: right; }
+
+    footer {
+      text-align: center;
+      padding: 24px;
+      color: #9ca3af;
+      font-size: 0.85rem;
+    }
+
+    /* NAV */
+    .toc {
+      background: white;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      padding: 20px 24px;
+      margin-bottom: 32px;
+    }
+    .toc h3 { font-size: 0.85rem; font-weight: 700; color: #9ca3af; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+    .toc-links { display: flex; flex-wrap: wrap; gap: 8px; }
+    .toc-link {
+      background: var(--lightblue);
+      color: var(--blue);
+      font-size: 0.82rem;
+      font-weight: 600;
+      border-radius: 99px;
+      padding: 4px 14px;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .toc-link:hover { background: #c3d9fc; }
+
+    /* BAND COMPARE */
+    .band-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media(max-width:600px){ .band-compare { grid-template-columns: 1fr; } }
+    .band-card {
+      border-radius: 14px;
+      padding: 20px;
+      border: 2px solid transparent;
+    }
+    .band6 { background: #fff7ed; border-color: #fdba74; }
+    .band7 { background: var(--lightgreen); border-color: #6ee7b7; }
+    .band-score {
+      font-size: 2rem;
+      font-weight: 900;
+      margin-bottom: 6px;
+    }
+    .band6 .band-score { color: var(--orange); }
+    .band7 .band-score { color: var(--green); }
+    .band-card h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 10px; }
+    .band-card ul { padding-left: 18px; font-size: 0.88rem; }
+    .band-card ul li { margin-bottom: 5px; }
+
+    /* MISTAKE */
+    .mistake-row {
+      display: flex;
+      gap: 0;
+      margin-bottom: 12px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .mistake-wrong {
+      flex: 1;
+      background: #fef2f2;
+      padding: 12px 16px;
+      font-size: 0.9rem;
+      border-right: 2px solid var(--border);
+    }
+    .mistake-right {
+      flex: 1;
+      background: var(--lightgreen);
+      padding: 12px 16px;
+      font-size: 0.9rem;
+    }
+    .mistake-label {
+      font-size: 0.68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    .mistake-wrong .mistake-label { color: #dc2626; }
+    .mistake-right .mistake-label { color: var(--green); }
+
+    /* PRACTICE */
+    .practice-item {
+      background: white;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      padding: 18px 20px;
+      margin-bottom: 12px;
+    }
+    .practice-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-radius: 6px;
+      padding: 3px 10px;
+      margin-bottom: 8px;
+    }
+    .tag-blue { background: var(--lightblue); color: var(--blue); }
+    .tag-purple { background: var(--lightpurple); color: var(--purple); }
+    .tag-green { background: var(--lightgreen); color: var(--green); }
+    .tag-orange { background: var(--lightorange); color: var(--orange); }
+    .practice-q { font-size: 0.95rem; line-height: 1.7; }
+    .practice-hint {
+      margin-top: 10px;
+      font-size: 0.83rem;
+      color: #6b7280;
+      background: var(--lightgray);
+      border-radius: 8px;
+      padding: 8px 12px;
+    }
+    .structure-header.green { background: var(--lightgreen); color: var(--green); }
+    .structure-header.orange { background: var(--lightorange); color: var(--orange); }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>📝 雅思作文完整攻略</h1>
+  <p>IELTS Academic Writing — 短時間衝刺指南（繁體中文版）</p>
+  <div class="badge-row">
+    <span class="badge">⏱ Task 1：20 分鐘</span>
+    <span class="badge">⏱ Task 2：40 分鐘</span>
+    <span class="badge">🎯 目標：6.5 分以上</span>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- ===== 目錄 ===== -->
+  <div class="toc">
+    <h3>目錄 Contents</h3>
+    <div class="toc-links">
+      <a class="toc-link" href="#overview">考試概述</a>
+      <a class="toc-link" href="#scoring">評分標準</a>
+      <a class="toc-link" href="#task2-structure">Task 2 架構</a>
+      <a class="toc-link" href="#task2-types">Task 2 全題型</a>
+      <a class="toc-link" href="#task2-sample">Task 2 範例</a>
+      <a class="toc-link" href="#task1">Task 1 架構 + 範例</a>
+      <a class="toc-link" href="#mistakes">中文考生常犯錯誤</a>
+      <a class="toc-link" href="#vocab">必備詞彙</a>
+      <a class="toc-link" href="#band">6.0 vs 7.0 差異</a>
+      <a class="toc-link" href="#practice">實戰練習題</a>
+      <a class="toc-link" href="#tips">答題技巧</a>
+      <a class="toc-link" href="#plan">衝刺計畫</a>
+    </div>
+  </div>
+
+  <!-- ===== 考試概述 ===== -->
+  <section id="overview">
+    <div class="section-title">
+      <div class="icon">📋</div>
+      考試概述
+    </div>
+    <div class="task-grid">
+      <div class="task-card task1">
+        <span class="task-label">Task 1</span>
+        <h3>描述圖表 / 流程圖</h3>
+        <ul>
+          <li>長條圖、折線圖、圓餅圖</li>
+          <li>表格數據比較</li>
+          <li>流程圖 / 地圖變化</li>
+        </ul>
+        <div class="task-meta">
+          <span class="meta-pill">至少 150 字</span>
+          <span class="meta-pill">約 20 分鐘</span>
+          <span class="meta-pill">佔總分 1/3</span>
+        </div>
+      </div>
+      <div class="task-card task2">
+        <span class="task-label">Task 2</span>
+        <h3>議論文 / 討論文</h3>
+        <ul>
+          <li>同意 / 不同意型</li>
+          <li>優缺點討論型</li>
+          <li>兩面觀點型</li>
+          <li>問題與解決方案型</li>
+        </ul>
+        <div class="task-meta">
+          <span class="meta-pill">至少 250 字</span>
+          <span class="meta-pill">約 40 分鐘</span>
+          <span class="meta-pill">佔總分 2/3</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 評分標準 ===== -->
+  <section id="scoring">
+    <div class="section-title">
+      <div class="icon">📊</div>
+      四大評分標準（各佔 25%）
+    </div>
+    <div class="score-grid">
+      <div class="score-card">
+        <div class="score-name">Task Achievement / Response</div>
+        <div class="score-abbr">TA/TR</div>
+        <p>是否完整回應題目、達成寫作目的</p>
+      </div>
+      <div class="score-card">
+        <div class="score-name">Coherence & Cohesion</div>
+        <div class="score-abbr">CC</div>
+        <p>段落組織是否清晰、連接詞使用是否自然</p>
+      </div>
+      <div class="score-card">
+        <div class="score-name">Lexical Resource</div>
+        <div class="score-abbr">LR</div>
+        <p>詞彙多樣性、精準度與拼寫</p>
+      </div>
+      <div class="score-card">
+        <div class="score-name">Grammatical Range & Accuracy</div>
+        <div class="score-abbr">GRA</div>
+        <p>句型多樣性、文法正確度</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TASK 2 架構 ===== -->
+  <section id="task2-structure">
+    <div class="section-title">
+      <div class="icon">🏗</div>
+      Task 2 黃金架構（四段式）
+    </div>
+
+    <!-- 同意/不同意 -->
+    <div class="structure-block">
+      <div class="structure-header blue">✅ 題型一：同意 / 不同意（Agree or Disagree）</div>
+      <div class="structure-body">
+        <div class="para-row">
+          <div class="para-num">1</div>
+          <div class="para-content">
+            <h4>引言 Introduction（2～3 句）</h4>
+            <p>改寫題目背景 → 表明立場（I agree / disagree with this view）</p>
+          </div>
+        </div>
+        <div class="para-row">
+          <div class="para-num">2</div>
+          <div class="para-content">
+            <h4>主體段落 1 — 主要論點</h4>
+            <p>主題句 → 解釋 → 例子 → 結尾句連結主題</p>
+          </div>
+        </div>
+        <div class="para-row">
+          <div class="para-num">3</div>
+          <div class="para-content">
+            <h4>主體段落 2 — 次要論點 或 反駁</h4>
+            <p>承認對立觀點 → 但用 "However" 反駁，強化立場</p>
+          </div>
+        </div>
+        <div class="para-row">
+          <div class="para-num">4</div>
+          <div class="para-content">
+            <h4>結論 Conclusion（2～3 句）</h4>
+            <p>重申立場 → 簡短總結兩個論點，不加新資訊</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 討論兩面 -->
+    <div class="structure-block">
+      <div class="structure-header purple">⚖️ 題型二：討論兩面觀點（Discuss Both Views）</div>
+      <div class="structure-body">
+        <div class="para-row purple">
+          <div class="para-num" style="background:var(--purple)">1</div>
+          <div class="para-content">
+            <h4>引言（2～3 句）</h4>
+            <p>改寫題目 → 說明本文將討論兩方觀點並給出自己意見</p>
+          </div>
+        </div>
+        <div class="para-row purple">
+          <div class="para-num" style="background:var(--purple)">2</div>
+          <div class="para-content">
+            <h4>觀點 A（3～4 句）</h4>
+            <p>陳述一方觀點 → 解釋理由 → 舉例</p>
+          </div>
+        </div>
+        <div class="para-row purple">
+          <div class="para-num" style="background:var(--purple)">3</div>
+          <div class="para-content">
+            <h4>觀點 B（3～4 句）</h4>
+            <p>陳述另一方觀點 → 解釋理由 → 舉例</p>
+          </div>
+        </div>
+        <div class="para-row purple">
+          <div class="para-num" style="background:var(--purple)">4</div>
+          <div class="para-content">
+            <h4>結論（給出個人意見）</h4>
+            <p>總結兩方 → 說明自己更傾向哪一方及原因</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TASK 2 全題型 ===== -->
+  <section id="task2-types">
+    <div class="section-title">
+      <div class="icon">🗂</div>
+      Task 2 五大題型完整攻略
+    </div>
+
+    <!-- 優缺點型 -->
+    <div class="structure-block">
+      <div class="structure-header green">➕➖ 題型三：優缺點型（Advantages and Disadvantages）</div>
+      <div class="structure-body">
+        <div style="margin-bottom:10px; font-size:0.9rem; color:#6b7280;">
+          題目特徵：<em>"Do the advantages outweigh the disadvantages?"</em> 或 <em>"Discuss the advantages and disadvantages."</em>
+        </div>
+        <div class="para-row">
+          <div class="para-num" style="background:var(--green)">1</div>
+          <div class="para-content">
+            <h4>引言（明確表明立場）</h4>
+            <p>改寫題目背景 → 說明優點大於缺點 OR 缺點大於優點（or 兩者相當）</p>
+          </div>
+        </div>
+        <div class="para-row">
+          <div class="para-num" style="background:var(--green)">2</div>
+          <div class="para-content">
+            <h4>優點段落</h4>
+            <p>主題句（優點）→ 解釋 → 舉例。建議寫 2 個優點，較支持的觀點放在字數較多的段落。</p>
+          </div>
+        </div>
+        <div class="para-row">
+          <div class="para-num" style="background:var(--green)">3</div>
+          <div class="para-content">
+            <h4>缺點段落</h4>
+            <p>主題句（缺點）→ 解釋 → 舉例，但避免說「完全沒缺點」或「完全沒優點」。</p>
+          </div>
+        </div>
+        <div class="para-row">
+          <div class="para-num" style="background:var(--green)">4</div>
+          <div class="para-content">
+            <h4>結論（強調立場）</h4>
+            <p>總結並重申整體是優點 > 缺點（或反之），呼應引言立場。</p>
+          </div>
+        </div>
+        <div class="example-box green" style="margin-top:12px">
+          <div class="example-label">範例題目</div>
+          The rise of online shopping has transformed the retail industry. Do the advantages of this development outweigh the disadvantages?
+        </div>
+        <div style="font-size:0.88rem; margin-top:10px; color:#374151;">
+          <strong>引言範本：</strong><em>The rapid growth of e-commerce has fundamentally changed the way people shop. While there are certain drawbacks to this trend, I believe that the benefits of online shopping significantly outweigh its disadvantages.</em>
+        </div>
+      </div>
+    </div>
+
+    <!-- 雙問題型 -->
+    <div class="structure-block">
+      <div class="structure-header orange">❓❓ 題型四：雙問題型（Two-Part / Direct Questions）</div>
+      <div class="structure-body">
+        <div style="margin-bottom:10px; font-size:0.9rem; color:#6b7280;">
+          題目特徵：題目最後有<strong>兩個獨立問題</strong>，例如 "Why is this? What can be done about it?" ——兩個問題<strong>都必須回答</strong>！
+        </div>
+        <div class="para-row">
+          <div class="para-num" style="background:var(--orange)">1</div>
+          <div class="para-content">
+            <h4>引言</h4>
+            <p>改寫背景 → 說明本文將回答兩個問題</p>
+          </div>
+        </div>
+        <div class="para-row">
+          <div class="para-num" style="background:var(--orange)">2</div>
+          <div class="para-content">
+            <h4>回答第一個問題</h4>
+            <p>完整回應問題一，需有解釋和例子（3～4 句）</p>
+          </div>
+        </div>
+        <div class="para-row">
+          <div class="para-num" style="background:var(--orange)">3</div>
+          <div class="para-content">
+            <h4>回答第二個問題</h4>
+            <p>完整回應問題二，需有解釋和例子（3～4 句）</p>
+          </div>
+        </div>
+        <div class="para-row">
+          <div class="para-num" style="background:var(--orange)">4</div>
+          <div class="para-content">
+            <h4>結論</h4>
+            <p>簡短總結兩個問題的答案</p>
+          </div>
+        </div>
+        <div class="example-box orange" style="margin-top:12px">
+          <div class="example-label">範例題目</div>
+          In many countries, people are living longer than ever before. What are the reasons for this? Is this a positive or negative development?
+        </div>
+        <div style="font-size:0.88rem; margin-top:8px; padding:10px 14px; background:#fff7ed; border-radius:8px; color:#d03801; border:1px solid #fdba74;">
+          ⚠️ 最常見失分原因：只回答其中一個問題。即使答得很好，也會在 Task Response 項被嚴重扣分！
+        </div>
+      </div>
+    </div>
+
+    <!-- 題型快速識別表 -->
+    <div class="card">
+      <h3 style="margin-bottom:14px">🔍 題型快速識別表</h3>
+      <table>
+        <thead>
+          <tr><th>題目關鍵字</th><th>題型</th><th>立場要求</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>To what extent do you agree or disagree?</td><td>同意/不同意型</td><td>必須表明立場（可部分同意）</td></tr>
+          <tr><td>Discuss both views and give your own opinion.</td><td>兩面觀點型</td><td>必須討論兩邊 + 給意見</td></tr>
+          <tr><td>Do the advantages outweigh the disadvantages?</td><td>優缺點型</td><td>必須比較並表明哪邊更重</td></tr>
+          <tr><td>What are the causes/effects? What can be done?</td><td>問題解決型</td><td>描述問題 + 提解決方案</td></tr>
+          <tr><td>Why is this? Is this a positive/negative development?</td><td>雙問題型</td><td>兩個問題都必須完整回答</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===== TASK 2 範例 ===== -->
+  <section id="task2-sample">
+    <div class="section-title">
+      <div class="icon">✍️</div>
+      Task 2 範例題目與作答
+    </div>
+
+    <div class="example-box purple">
+      <div class="example-label">範例題目（同意 / 不同意型）</div>
+      Some people believe that technology has made our lives more complicated. To what extent do you agree or disagree?
+    </div>
+
+    <div class="card">
+      <h3 style="margin-bottom:12px; color:var(--green)">✅ 高分範例作答（約 280 字）</h3>
+      <div class="essay-box">
+        <p><span class="highlight">It is often argued that modern technology has added unnecessary complexity to daily life.</span> While I acknowledge that technology can be overwhelming at times, I firmly believe that its overall impact has been to simplify, rather than complicate, our lives.</p>
+
+        <p><span class="highlight">To begin with,</span> technology has dramatically streamlined many everyday tasks. Online banking, for instance, allows people to manage finances in minutes without visiting a branch. Similarly, navigation apps have eliminated the need to memorize routes or read physical maps. These conveniences save time and reduce cognitive load, making life objectively easier for the majority of people.</p>
+
+        <p><span class="highlight">However,</span> critics argue that keeping up with rapidly evolving devices — frequent software updates, cybersecurity concerns, and digital overload — creates its own form of stress. <span class="highlight">While this is a valid point,</span> such challenges are typically temporary learning curves rather than permanent complications. Most people adapt quickly, and support systems such as tutorials and customer service help ease transitions.</p>
+
+        <p><span class="highlight">In conclusion,</span> although technology occasionally introduces short-term complexity, the long-term benefits of speed, convenience, and connectivity far outweigh these drawbacks. I therefore agree that, on balance, technology has simplified modern life rather than complicated it.</p>
+      </div>
+      <div class="word-count">字數：約 213 字（實際考試建議寫 250～290 字）</div>
+    </div>
+
+    <div class="example-box orange">
+      <div class="example-label">範例題目（問題與解決方案型）</div>
+      Many cities around the world are facing a growing problem of traffic congestion. What are the causes of this problem, and what measures can be taken to solve it?
+    </div>
+
+    <div class="card">
+      <h3 style="margin-bottom:12px; color:var(--green)">✅ 架構示範（重點句型）</h3>
+      <div class="essay-box">
+        <p><strong>引言：</strong>Traffic congestion has become one of the most pressing urban challenges of the 21st century. This essay will examine the main causes of this issue and propose several effective solutions.</p>
+        <p><strong>原因段：</strong>The primary cause is the rapid increase in private car ownership... Furthermore, inadequate public transport infrastructure forces people to rely on personal vehicles...</p>
+        <p><strong>解決方案段：</strong>One effective measure would be to invest heavily in public transport networks... In addition, governments could implement congestion pricing schemes to discourage driving in city centres...</p>
+        <p><strong>結論：</strong>In conclusion, traffic congestion stems from over-reliance on private cars and insufficient public transport. By improving infrastructure and introducing smart pricing policies, cities can significantly reduce gridlock.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TASK 1 架構 ===== -->
+  <section id="task1">
+    <div class="section-title">
+      <div class="icon">📈</div>
+      Task 1 架構（圖表描述）
+    </div>
+    <div class="structure-block">
+      <div class="structure-header blue">📊 圖表 / 數據型（三段式）</div>
+      <div class="structure-body">
+        <div class="para-row">
+          <div class="para-num">1</div>
+          <div class="para-content">
+            <h4>Overview 概述（最重要！）</h4>
+            <p>用 1～2 句說明圖表最明顯的趨勢或特徵，<strong>不要</strong>看細節數字</p>
+          </div>
+        </div>
+        <div class="para-row">
+          <div class="para-num">2</div>
+          <div class="para-content">
+            <h4>主體段 1 — 主要趨勢</h4>
+            <p>描述最顯著的數據變化，加入具體數字支撐</p>
+          </div>
+        </div>
+        <div class="para-row">
+          <div class="para-num">3</div>
+          <div class="para-content">
+            <h4>主體段 2 — 次要趨勢 / 比較</h4>
+            <p>描述其他數據並做比較，結尾回扣 overview</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="example-box green">
+      <div class="example-label">Task 1 範例 Overview 句型</div>
+      <strong>Overall,</strong> it is clear that [A] experienced the most significant growth over the period, while [B] showed a steady decline. The most notable trend is that [X] consistently outperformed all other categories throughout the years shown.
+    </div>
+
+    <!-- Task 1 完整範例 -->
+    <div style="margin-top:20px">
+      <div class="example-box purple">
+        <div class="example-label">Task 1 範例題目（折線圖）</div>
+        The graph below shows the percentage of people using the internet in three countries between 2000 and 2020. Summarise the information by selecting and reporting the main features, and make comparisons where relevant.
+        <div style="margin-top:12px; background:white; border-radius:8px; padding:16px; font-size:0.85rem; color:#6b7280; text-align:center; border:1px dashed #c4b5fd;">
+          📊 [假設圖表數據]：2000 年：Country A 20%、Country B 5%、Country C 2%<br>
+          2020 年：Country A 85%、Country B 60%、Country C 35%
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 style="margin-bottom:12px; color:var(--green)">✅ Task 1 高分範例作答（約 175 字）</h3>
+        <div class="essay-box">
+          <p><span class="highlight">The line graph illustrates the proportion of the population in three countries who used the internet over a twenty-year period from 2000 to 2020.</span></p>
+
+          <p><span class="highlight">Overall,</span> internet usage rose considerably in all three countries over the period. Country A consistently had the highest rate of internet adoption, while Country C showed the most dramatic proportional increase despite starting from the lowest base.</p>
+
+          <p><span class="highlight">In 2000,</span> Country A led with approximately 20% of its population online, compared to just 5% in Country B and a mere 2% in Country C. <span class="highlight">By 2020,</span> Country A's figures had climbed sharply to 85%, making it the clear frontrunner. Country B experienced steady growth, reaching 60% by the end of the period.</p>
+
+          <p><span class="highlight">Country C, meanwhile,</span> saw the most remarkable transformation — rising from just 2% to 35%, representing a 17-fold increase. <span class="highlight">Despite this,</span> it remained the lowest of the three countries throughout the entire period shown.</p>
+        </div>
+        <div class="word-count">字數：約 165 字 ✓ | 有 Overview ✓ | 有具體數字 ✓ | 有比較 ✓</div>
+      </div>
+
+      <div class="card" style="border-left:4px solid var(--orange)">
+        <h3 style="color:var(--orange); margin-bottom:10px">📌 Task 1 不同圖型的寫法差異</h3>
+        <table>
+          <thead><tr><th>圖型</th><th>重點描述方向</th><th>特殊注意事項</th></tr></thead>
+          <tbody>
+            <tr><td><strong>折線圖 Line Graph</strong></td><td>趨勢變化（上升/下降/波動）</td><td>必須提到時間範圍</td></tr>
+            <tr><td><strong>長條圖 Bar Chart</strong></td><td>數值比較（最高/最低/差距）</td><td>注意是否有時間維度</td></tr>
+            <tr><td><strong>圓餅圖 Pie Chart</strong></td><td>比例占比（最大/最小/相近）</td><td>換算成百分比描述</td></tr>
+            <tr><td><strong>表格 Table</strong></td><td>選最顯著的數據比較</td><td>不要逐格描述，要篩選重點</td></tr>
+            <tr><td><strong>流程圖 Process</strong></td><td>步驟順序（passive voice 為主）</td><td>用 First / Then / Finally</td></tr>
+            <tr><td><strong>地圖 Map</strong></td><td>位置變化（新增/移除/改建）</td><td>用方位詞描述（to the north of...）</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 中文考生常犯錯誤 ===== -->
+  <section id="mistakes">
+    <div class="section-title">
+      <div class="icon">⚠️</div>
+      中文考生最常犯的 8 大錯誤
+    </div>
+    <div class="card">
+      <p style="font-size:0.9rem; color:#6b7280; margin-bottom:16px">以下是台灣/香港/大陸考生最容易因母語干擾而犯的錯誤，每個都是直接失分的地雷！</p>
+
+      <!-- 1 -->
+      <div style="margin-bottom:16px">
+        <div style="font-weight:700; font-size:0.9rem; margin-bottom:6px; color:#374151">❶ 冠詞 a / an / the 亂用（或省略）</div>
+        <div class="mistake-row">
+          <div class="mistake-wrong"><div class="mistake-label">❌ 錯誤</div>Education is important part of life. Government should improve system.</div>
+          <div class="mistake-right"><div class="mistake-label">✅ 正確</div>Education is <strong>an</strong> important part of life. <strong>The</strong> government should improve <strong>the</strong> system.</div>
+        </div>
+        <div style="font-size:0.82rem; color:#6b7280; padding: 4px 6px;">💡 規則：特指用 the，第一次提到用 a/an，不可數/抽象名詞通常不加冠詞</div>
+      </div>
+
+      <!-- 2 -->
+      <div style="margin-bottom:16px">
+        <div style="font-weight:700; font-size:0.9rem; margin-bottom:6px; color:#374151">❷ 不可數名詞加 s</div>
+        <div class="mistake-row">
+          <div class="mistake-wrong"><div class="mistake-label">❌ 錯誤</div>People need more <u>informations</u> and <u>knowledges</u> about <u>environments</u>.</div>
+          <div class="mistake-right"><div class="mistake-label">✅ 正確</div>People need more <strong>information</strong> and <strong>knowledge</strong> about <strong>the environment</strong>.</div>
+        </div>
+        <div style="font-size:0.82rem; color:#6b7280; padding: 4px 6px;">💡 不可數名詞：information, advice, knowledge, research, evidence, equipment, furniture, news</div>
+      </div>
+
+      <!-- 3 -->
+      <div style="margin-bottom:16px">
+        <div style="font-weight:700; font-size:0.9rem; margin-bottom:6px; color:#374151">❸ 主詞動詞不一致</div>
+        <div class="mistake-row">
+          <div class="mistake-wrong"><div class="mistake-label">❌ 錯誤</div>The number of students who study abroad <u>are</u> increasing every year.</div>
+          <div class="mistake-right"><div class="mistake-label">✅ 正確</div>The number of students who study abroad <strong>is</strong> increasing every year.</div>
+        </div>
+        <div style="font-size:0.82rem; color:#6b7280; padding: 4px 6px;">💡 "The number of + 複數名詞" → 動詞用單數。"A number of + 複數名詞" → 動詞用複數</div>
+      </div>
+
+      <!-- 4 -->
+      <div style="margin-bottom:16px">
+        <div style="font-weight:700; font-size:0.9rem; margin-bottom:6px; color:#374151">❹ 中式英文直譯</div>
+        <div class="mistake-row">
+          <div class="mistake-wrong"><div class="mistake-label">❌ 中式英文</div>"People's living standard is more and more high." / "The economy has a very big development."</div>
+          <div class="mistake-right"><div class="mistake-label">✅ 自然英文</div>"Living standards are <strong>rising significantly</strong>." / "The economy has <strong>developed substantially</strong>."</div>
+        </div>
+        <div style="font-size:0.82rem; color:#6b7280; padding: 4px 6px;">💡 避免把中文句子逐字翻譯。遇到不確定的表達，換一種更簡單但地道的方式說。</div>
+      </div>
+
+      <!-- 5 -->
+      <div style="margin-bottom:16px">
+        <div style="font-weight:700; font-size:0.9rem; margin-bottom:6px; color:#374151">❺ 過度使用 "and" / "also" 作連接詞</div>
+        <div class="mistake-row">
+          <div class="mistake-wrong"><div class="mistake-label">❌ 錯誤</div>Technology is useful. And it saves time. Also it is convenient. And people use it every day.</div>
+          <div class="mistake-right"><div class="mistake-label">✅ 正確</div>Technology is useful because it <strong>not only</strong> saves time <strong>but also</strong> offers convenience, making it an indispensable part of modern life.</div>
+        </div>
+      </div>
+
+      <!-- 6 -->
+      <div style="margin-bottom:16px">
+        <div style="font-weight:700; font-size:0.9rem; margin-bottom:6px; color:#374151">❻ 時態混亂</div>
+        <div class="mistake-row">
+          <div class="mistake-wrong"><div class="mistake-label">❌ 錯誤</div>In the past, people <u>travel</u> by horse. Nowadays technology <u>changed</u> how we move.</div>
+          <div class="mistake-right"><div class="mistake-label">✅ 正確</div>In the past, people <strong>travelled</strong> by horse. Nowadays, technology <strong>has changed</strong> how we move.</div>
+        </div>
+        <div style="font-size:0.82rem; color:#6b7280; padding: 4px 6px;">💡 議論文整體用現在式，描述過去用過去式，強調「已經」的變化用現在完成式</div>
+      </div>
+
+      <!-- 7 -->
+      <div style="margin-bottom:16px">
+        <div style="font-weight:700; font-size:0.9rem; margin-bottom:6px; color:#374151">❼ 引言直接抄題目</div>
+        <div class="mistake-row">
+          <div class="mistake-wrong"><div class="mistake-label">❌ 錯誤（照抄）</div>題目："Technology has made our lives more complicated." 引言也寫："Technology has made our lives more complicated."</div>
+          <div class="mistake-right"><div class="mistake-label">✅ 正確（改寫）</div>"Modern advancements have arguably added layers of complexity to everyday existence."（同義替換：technology→modern advancements, complicated→complexity）</div>
+        </div>
+      </div>
+
+      <!-- 8 -->
+      <div>
+        <div style="font-weight:700; font-size:0.9rem; margin-bottom:6px; color:#374151">❽ 論點空泛，沒有具體例子</div>
+        <div class="mistake-row">
+          <div class="mistake-wrong"><div class="mistake-label">❌ 空泛</div>Technology is good for education. Students can learn many things. It is very helpful for them.</div>
+          <div class="mistake-right"><div class="mistake-label">✅ 具體</div>Technology enhances education significantly. Platforms such as Khan Academy allow students to access high-quality lessons at no cost, enabling self-paced learning that traditional classrooms cannot always provide.</div>
+        </div>
+        <div style="font-size:0.82rem; color:#6b7280; padding: 4px 6px;">💡 公式：主題句 → 解釋原因 → 具體例子（人名/地名/機構名/數據）→ 回扣主題</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 實用詞彙 ===== -->
+  <section id="vocab">
+    <div class="section-title">
+      <div class="icon">💬</div>
+      高分必備詞彙與連接詞
+    </div>
+    <div class="card">
+      <table>
+        <thead>
+          <tr>
+            <th>功能</th>
+            <th>實用句型 / 詞彙</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>表達立場</strong></td>
+            <td>I firmly believe / I would argue that / In my view / It is my contention that</td>
+          </tr>
+          <tr>
+            <td><strong>引入論點</strong></td>
+            <td>To begin with / First and foremost / One of the main reasons is that</td>
+          </tr>
+          <tr>
+            <td><strong>加強論點</strong></td>
+            <td>Furthermore / Moreover / In addition / What is more</td>
+          </tr>
+          <tr>
+            <td><strong>舉例</strong></td>
+            <td>For instance / For example / A case in point is / To illustrate</td>
+          </tr>
+          <tr>
+            <td><strong>讓步轉折</strong></td>
+            <td>While it is true that... / Although... / However / Nevertheless / That said</td>
+          </tr>
+          <tr>
+            <td><strong>結論</strong></td>
+            <td>In conclusion / To summarise / Overall, it is clear that / Taking everything into account</td>
+          </tr>
+          <tr>
+            <td><strong>圖表上升</strong></td>
+            <td>rose / increased / surged / climbed / grew significantly</td>
+          </tr>
+          <tr>
+            <td><strong>圖表下降</strong></td>
+            <td>fell / declined / dropped / decreased / plummeted</td>
+          </tr>
+          <tr>
+            <td><strong>圖表平穩</strong></td>
+            <td>remained stable / levelled off / stayed relatively constant</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===== 6.0 vs 7.0 ===== -->
+  <section id="band">
+    <div class="section-title">
+      <div class="icon">📐</div>
+      Band 6.0 vs Band 7.0：差在哪裡？
+    </div>
+    <div class="band-compare">
+      <div class="band-card band6">
+        <div class="band-score">6.0</div>
+        <h4>這個分數的作文通常是…</h4>
+        <ul>
+          <li>回應了題目，但不夠完整或部分偏題</li>
+          <li>段落有組織，但連接詞使用較機械化（"Firstly... Secondly... Finally..."）</li>
+          <li>詞彙重複，較少使用同義詞替換</li>
+          <li>文法有一些錯誤，尤其是冠詞和時態</li>
+          <li>句型以簡單句為主，缺少複合句或複雜句</li>
+          <li>結論只是重複引言，沒有新的提升</li>
+        </ul>
+      </div>
+      <div class="band-card band7">
+        <div class="band-score">7.0</div>
+        <h4>這個分數的作文通常是…</h4>
+        <ul>
+          <li>完整清晰地回應所有題目要求</li>
+          <li>段落邏輯流暢，連接詞使用自然多樣</li>
+          <li>詞彙豐富，會根據語境選擇精準的詞彙</li>
+          <li>文法偶爾有小錯誤，但不影響理解</li>
+          <li>靈活使用多種句型（關係子句、條件句、被動式等）</li>
+          <li>每個主體段有清晰的主題句 + 發展 + 例子</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:8px">
+      <h3 style="margin-bottom:14px">✍️ 同樣論點，6分 vs 7分的寫法對比</h3>
+      <div style="font-size:0.85rem; font-weight:700; color:var(--orange); margin-bottom:8px">論點：科技幫助教育</div>
+      <div class="mistake-row">
+        <div class="mistake-wrong">
+          <div class="mistake-label">Band 6.0 寫法</div>
+          Technology is very helpful for education. Students can use the internet to study. They can find many things online. This is good for learning.
+          <div style="margin-top:6px; font-size:0.8rem; color:#dc2626">→ 詞彙重複(good/helpful)、無具體例子、句型單一</div>
+        </div>
+        <div class="mistake-right">
+          <div class="mistake-label">Band 7.0 寫法</div>
+          Technology has revolutionised the way students learn. Digital platforms such as Coursera and Khan Academy provide free access to world-class courses, enabling learners in remote areas to acquire skills that were previously unavailable to them. This democratisation of education is arguably one of the most significant benefits of the digital age.
+          <div style="margin-top:6px; font-size:0.8rem; color:var(--green)">→ 具體例子、豐富詞彙、複合句型</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 實戰練習題 ===== -->
+  <section id="practice">
+    <div class="section-title">
+      <div class="icon">🎯</div>
+      實戰練習題（按題型分類）
+    </div>
+    <p style="font-size:0.9rem; color:#6b7280; margin-bottom:16px">以下是各題型的高頻練習題，建議計時練習（Task 2 限時 40 分鐘，Task 1 限時 20 分鐘）。</p>
+
+    <div class="practice-item">
+      <span class="practice-tag tag-blue">同意/不同意型</span>
+      <div class="practice-q">Some people argue that the best way to reduce crime is to give longer prison sentences. To what extent do you agree or disagree with this opinion?</div>
+      <div class="practice-hint">💡 提示：思考其他減少犯罪的方式（教育、社會支持、貧困根源）→ 反駁「長期監禁萬能論」</div>
+    </div>
+
+    <div class="practice-item">
+      <span class="practice-tag tag-purple">兩面觀點型</span>
+      <div class="practice-q">Some people believe that children should be taught to compete. Others believe that cooperation is more important. Discuss both views and give your own opinion.</div>
+      <div class="practice-hint">💡 提示：競爭的優點（進步動力）vs 合作的優點（社會和諧）→ 最後表明自己的立場</div>
+    </div>
+
+    <div class="practice-item">
+      <span class="practice-tag tag-green">優缺點型</span>
+      <div class="practice-q">Many people are now working from home rather than going to an office. Do the advantages of this trend outweigh the disadvantages?</div>
+      <div class="practice-hint">💡 提示：優點（彈性、省通勤時間）vs 缺點（孤立感、工作生活難以區分）→ 明確表明哪方更重</div>
+    </div>
+
+    <div class="practice-item">
+      <span class="practice-tag tag-orange">問題解決型</span>
+      <div class="practice-q">Air pollution has become a serious problem in many cities worldwide. What are the main causes of this problem? What measures could be taken to address it?</div>
+      <div class="practice-hint">💡 提示：原因（工業排放、車輛尾氣）→ 解決方案（可再生能源、大眾運輸）</div>
+    </div>
+
+    <div class="practice-item">
+      <span class="practice-tag tag-blue">雙問題型</span>
+      <div class="practice-q">In many countries, the number of young people choosing to study abroad is increasing. Why do you think this is? Is this a positive or negative development?</div>
+      <div class="practice-hint">💡 注意：這題有兩個問題！第一段回答「為什麼」，第二段回答「是否正面/負面」，兩個都要完整作答！</div>
+    </div>
+
+    <div class="practice-item" style="border-left:4px solid var(--blue)">
+      <span class="practice-tag tag-blue">Task 1 練習</span>
+      <div class="practice-q">The chart below shows the percentage of household income spent on various categories in the UK in 1985 and 2015. Summarise the information by selecting and reporting the main features, and make comparisons where relevant.</div>
+      <div class="practice-hint">💡 提示：先找最大/最小的類別 → 比較 1985 和 2015 的變化 → Overview 說明整體趨勢。記得寫 150 字以上！</div>
+    </div>
+  </section>
+
+  <!-- ===== 答題技巧 ===== -->
+  <section id="tips">
+    <div class="section-title">
+      <div class="icon">⚡</div>
+      關鍵答題技巧
+    </div>
+    <div class="tip-grid">
+      <div class="tip-card">
+        <div class="tip-icon">🚫</div>
+        <h4>絕對不要改寫題目照抄</h4>
+        <p>引言要用<strong>同義字替換</strong>改寫題目，直接複製會被扣分（TA / TR 項）。</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">📏</div>
+        <h4>字數要達標</h4>
+        <p>Task 1 不少於 150 字，Task 2 不少於 250 字。字數不足會直接被扣分。</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">🧩</div>
+        <h4>每段只有一個中心思想</h4>
+        <p>每個主體段落開頭寫<strong>主題句</strong>，之後的句子都要支撐該主題句。</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">🔀</div>
+        <h4>句型要多樣化</h4>
+        <p>混合使用簡單句、複合句、條件句（If...）、關係子句（which / that...）。</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">⏰</div>
+        <h4>先做 Task 2</h4>
+        <p>Task 2 佔分較多，建議先完成。Task 1 放最後。考前分配：Task 2（40 分鐘）、Task 1（20 分鐘）。</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">🔁</div>
+        <h4>留 2～3 分鐘檢查</h4>
+        <p>快速掃描拼寫錯誤、主詞動詞一致性、冠詞 a/an/the 的使用是否正確。</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">📝</div>
+        <h4>Task 1：一定要寫 Overview</h4>
+        <p>Overview 是 Task 1 最重要的段落。沒有 Overview 幾乎不可能拿到 6 分以上。</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">🎯</div>
+        <h4>避免重複使用同一個詞</h4>
+        <p>例如 "good" 可改為 beneficial / advantageous / positive；"show" 可改為 illustrate / indicate / demonstrate。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 短時間衝刺計畫 ===== -->
+  <section id="plan">
+    <div class="section-title">
+      <div class="icon">🚀</div>
+      短時間衝刺計畫
+    </div>
+    <div class="urgent-box">
+      <h3>⚡ 考前倒數 — 每日任務</h3>
+      <div class="day-row">
+        <span class="day-label">Day 1～2</span>
+        <div class="day-content">熟背四段式架構 + 連接詞清單。各練寫一篇 Task 2 引言和結論（不用全篇）。</div>
+      </div>
+      <div class="day-row">
+        <span class="day-label">Day 3～4</span>
+        <div class="day-content">完整練寫一篇 Task 2（限時 40 分鐘）。重點：確保字數達 250+ 且每段有主題句。</div>
+      </div>
+      <div class="day-row">
+        <span class="day-label">Day 5</span>
+        <div class="day-content">練寫一篇 Task 1 圖表描述（限時 20 分鐘）。確保有 Overview 段落，使用數字和圖表詞彙。</div>
+      </div>
+      <div class="day-row">
+        <span class="day-label">考試前夜</span>
+        <div class="day-content">複習連接詞清單 + 高頻替換詞彙。不要練寫全篇文章，保存體力。</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px; border-left:4px solid var(--green)">
+      <h3 style="color:var(--green); margin-bottom:10px">💡 最高 CP 值的備考重點（時間有限時）</h3>
+      <ol style="padding-left:20px; line-height:2">
+        <li>背熟<strong>引言改寫公式</strong>（同義字替換題目）</li>
+        <li>練到可以在 5 分鐘內寫好<strong>Task 2 引言 + 結論</strong></li>
+        <li>記住 Task 1 必須有 <strong>Overview</strong>，且 Overview 放在第二段（引言之後）</li>
+        <li>學會 10 個以上的<strong>圖表動詞</strong>（rise, fall, plateau, fluctuate...）</li>
+        <li>每個主體段落都要有<strong>具體例子或數據</strong>，不能只有空泛論述</li>
+      </ol>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  雅思作文攻略 · IELTS Writing Complete Guide · 祝考試順利 🍀
+</footer>
+
+</body>
+</html>
